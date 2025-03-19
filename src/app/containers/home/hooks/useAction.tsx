@@ -2,6 +2,7 @@
 
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
+import { useSearchHistory } from '@/app/hooks/useSearchHistory';
 
 interface City {
   id: number;
@@ -36,6 +37,7 @@ export const useAction = (cities: City[]) => {
   const router = useRouter();
   const dropdownRef = useRef<HTMLDivElement>(null);
   const guestsDropdownRef = useRef<HTMLDivElement>(null);
+  const { saveSearchHistory } = useSearchHistory();
 
   const filteredCities = cities?.filter(
     (city) =>
@@ -99,7 +101,17 @@ export const useAction = (cities: City[]) => {
         rooms: guestsAndRooms.rooms.toString()
       });
 
-      router.push(`/search?${searchParams.toString()}`);
+      // Save search history
+      saveSearchHistory({
+        city: selectedCity?.name || '',
+        country: selectedCity?.country || '',
+        dateFrom: dateRange.from,
+        dateTo: dateRange.to,
+        guests: guestsAndRooms.guests.toString(),
+        rooms: guestsAndRooms.rooms.toString(),
+      });
+
+      router.push(`/hotel/search?${searchParams.toString()}`);
     }
   };
 
