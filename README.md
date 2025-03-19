@@ -1,5 +1,7 @@
 # Hotel Booking Website
 
+demo: tixia.vercel.app
+
 A NextJS-based hotel booking platform that allows users to search, filter, and book hotel rooms.
 
 ## Features ✨
