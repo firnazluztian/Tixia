@@ -15,7 +15,7 @@ export const Navigation = () => {
         <div className="hidden md:block">
           <List />
         </div>
-        <div className="w-10 h-10 bg-white rounded-full text-gray-800 flex items-center justify-center">
+        <div className="w-10 h-10 bg-[#404040] rounded-full text-white flex items-center justify-center">
           T
         </div>
         <div className="text-white rounded-full">ID</div>

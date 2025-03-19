@@ -6,6 +6,7 @@ import { useAction } from "./hooks/useAction";
 import { InputCity } from "./input-city";
 import { InputDate } from "./input-date";
 import { InputGuests } from "./input-guests";
+import { useSearchHistory } from "@/app/hooks/useSearchHistory";
 
 interface City {
   id: number;
@@ -35,8 +36,11 @@ export function HomeContainer({ cities }: HomeContainerProps) {
     guestsAndRooms,
     isGuestsOpen,
     guestsDropdownRef,
-    setIsGuestsOpen
+    setIsGuestsOpen,
   } = useAction(cities);
+
+  const { getLastSearch, goToLastSearch } = useSearchHistory();
+  const hasHistory = getLastSearch() !== null;
 
   return (
     <div className="relative min-h-screen">
@@ -90,11 +94,21 @@ export function HomeContainer({ cities }: HomeContainerProps) {
           </div>
         </div>
 
-        <div className="w-full max-w-7xl mt-3 md:mt-4 flex justify-center md:justify-start">
-          <div className="bg-blue-500 opacity-70 text-white py-2 rounded-md p-2 flex items-center justify-center w-fit cursor-pointer text-sm md:text-base">
+        <div className="w-full max-w-7xl">
+          <button
+            onClick={() =>
+              hasHistory
+                ? goToLastSearch()
+                : alert("Tidak ada pencarian terakhir")
+            }
+            className="cursor-pointer mt-4 px-2 py-1 bg-[#007ADE80] text-white text-sm flex items-center gap-2 rounded-xl opacity-70 hover:opacity-90 transition-opacity"
+          >
             Lihat Pencarian Terakhir-mu
-            <Icon icon="mdi:chevron-down" className="w-5 h-5 md:w-6 md:h-6 ml-2" />
-          </div>
+            <Icon
+              icon="mdi:chevron-down"
+              className="w-5 h-5 md:w-6 md:h-6 ml-1"
+            />
+          </button>
         </div>
       </div>
     </div>
