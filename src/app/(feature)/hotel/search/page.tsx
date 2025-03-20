@@ -41,12 +41,13 @@ async function getHotels(searchParams: { [key: string]: string | string[] | unde
   }
 }
 
-interface SearchPageProps {
-  searchParams: { [key: string]: string | string[] | undefined }
-}
-
-export default async function SearchPage({ searchParams }: SearchPageProps) {
-  const initialData = await getHotels(searchParams);
+export default async function SearchPage({
+  searchParams,
+}: {
+  searchParams: Promise<{ [key: string]: string | string[] | undefined }>
+}) {
+  const resolvedParams = await searchParams;
+  const initialData = await getHotels(resolvedParams);
 
   return (
     <Suspense fallback={<SearchLoading />}>
