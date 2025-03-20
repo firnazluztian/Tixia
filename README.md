@@ -3,7 +3,7 @@
 ## 🚀 Live Demo
 [Tixia App](https://tixia.vercel.app)
 
-A NextJS-based hotel booking platform that allows users to search, filter, and book hotel rooms.
+A NextJS-based hotel booking platform that allows users to search, filter, and book hotel rooms, completely responive and user friendly.
 
 ## Features ✨
 
