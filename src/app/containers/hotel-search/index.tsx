@@ -2,13 +2,18 @@
 import { Navigation } from "@/app/components/Navigation";
 import dynamic from "next/dynamic";
 import { HotelList } from "./hotel-list";
+import { HotelSearchResponse } from "./types";
 
 const SearchParams = dynamic(
   () => import("./search-params").then((mod) => mod.SearchParams),
   { ssr: false }
 );
 
-export function HotelSearchContainer() {
+interface HotelSearchContainerProps {
+  initialData: HotelSearchResponse;
+}
+
+export function HotelSearchContainer({ initialData }: HotelSearchContainerProps) {
   return (
     <>
       <div className="fixed top-0 left-0 right-0 z-50 bg-white shadow-md">
@@ -19,7 +24,7 @@ export function HotelSearchContainer() {
           <SearchParams />
         </div>
         <div className="relative z-10 pt-4">
-          <HotelList />
+          <HotelList initialData={initialData} />
         </div>
       </div>
     </>

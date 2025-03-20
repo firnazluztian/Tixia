@@ -6,12 +6,16 @@ import { useAction } from "./hooks/useAction";
 import { HotelSearchResponse } from "./types";
 import { Filter } from "./filter";
 
-export const HotelList = () => {
+interface HotelListProps {
+  initialData: HotelSearchResponse;
+}
+
+export const HotelList = ({ initialData }: HotelListProps) => {
   const { fetchHotels, filters, updateFilters } = useAction();
-  const [hotels, setHotels] = useState<HotelSearchResponse | null>(null);
-  const [loading, setLoading] = useState(true);
+  const [hotels, setHotels] = useState<HotelSearchResponse>(initialData);
+  const [loading, setLoading] = useState(false);
   const [error, setError] = useState<string | null>(null);
-  const [currentPage, setCurrentPage] = useState(1);
+  const [currentPage, setCurrentPage] = useState(initialData.data.page);
 
   useEffect(() => {
     const getHotels = async () => {
@@ -20,15 +24,16 @@ export const HotelList = () => {
         const response = await fetchHotels(currentPage);
         setHotels(response);
       } catch (err) {
-        console.log(err);
+        console.error(err);
         setError("Failed to fetch hotels");
       } finally {
         setLoading(false);
       }
     };
 
+    // Always fetch when filters or page changes
     getHotels();
-  }, [fetchHotels, currentPage]);
+  }, [fetchHotels, currentPage, filters.stars, filters.facilities, filters.minPrice, filters.maxPrice]);
 
   const handlePageChange = (page: number) => {
     setCurrentPage(page);
