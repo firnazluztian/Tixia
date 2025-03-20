@@ -18,20 +18,26 @@ export interface Hotel {
   images: string[];
   facilities: string[];
   rooms: {
-    price: number;
     id: number;
     name: string;
+    price: number;
     bed_type: string;
     size: number;
     guest_capacity: number;
     facilities: string[];
     is_breakfast_included: boolean;
+    available_rooms: number;
+    total_rooms: number;
   }[];
   city: {
     id: number;
     name: string;
     country: string;
   };
+  description: string;
+  policy: string;
+  latitude: number;
+  longitude: number;
 }
 
 export interface FilterState {

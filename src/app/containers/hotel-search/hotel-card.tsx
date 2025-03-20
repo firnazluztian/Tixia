@@ -21,16 +21,23 @@ export const HotelCard = ({ hotel }: { hotel: Hotel }) => {
   const router = useRouter();
   const searchParams = useSearchParams();
 
+  // Create clean URL params without the hotel data
   const params = new URLSearchParams({
-    hotelId: hotel.id.toString() || "",
     city: searchParams.get("city") || "",
     country: searchParams.get("country") || "",
     dateFrom: searchParams.get("dateFrom") || "",
     dateTo: searchParams.get("dateTo") || "",
     guests: searchParams.get("guests") || "",
     rooms: searchParams.get("rooms") || "",
-    hotelData: encodeURIComponent(JSON.stringify(hotel)),
   });
+
+  const handleHotelClick = () => {
+    // Store hotel data temporarily in localStorage
+    localStorage.setItem(`hotel_preview_${hotel.id}`, JSON.stringify(hotel));
+    
+    // Navigate to detail page with clean URL
+    router.push(`/hotel/detail/${hotel.name}/${hotel.id}?${params.toString()}`);
+  };
 
   const getFacilityIcon = (facility: string) => {
     const cleanFacility = facility.replace(/[\[\]']/g, "").trim();
@@ -39,11 +46,7 @@ export const HotelCard = ({ hotel }: { hotel: Hotel }) => {
 
   return (
     <div
-      onClick={() =>
-        router.push(
-          `/hotel/detail/${hotel?.name}/${hotel?.id}?${params.toString()}`
-        )
-      }
+      onClick={handleHotelClick}
       className="cursor-pointer rounded-lg shadow-md p-4 flex flex-col md:flex-row gap-4 mb-4 border border-gray-200 align-center"
     >
       {/* Hotel Image */}

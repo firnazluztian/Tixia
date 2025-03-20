@@ -1,7 +1,7 @@
 "use client";
-
+import { useEffect, useState, use } from 'react';
+import { Hotel } from '@/app/containers/hotel-search/types';
 import { HotelDetailContainer } from "@/app/containers/hotel-detail";
-import { useSearchParams } from "next/navigation";
 
 // interface HotelDetailResponse {
 //   data: {
@@ -65,14 +65,22 @@ import { useSearchParams } from "next/navigation";
 //   return <HotelDetailContainer hotel={hotel.data} />;
 // } 
 
-export default function HotelDetailPage() {
-  const searchParams = useSearchParams();
-  const hotelData = searchParams.get('hotelData');
-  const hotel = hotelData ? JSON.parse(decodeURIComponent(hotelData)) : null;
+export default function HotelDetailPage({ params }: { params: Promise<{ id: string }> }) {
+  const [previewData, setPreviewData] = useState<Hotel | null>(null);
+  const resolvedParams = use(params);
 
-  if (!hotel) {
+  // apparently recoil is not working here causing conflict with ssr operation, so i need to use local storage to store the data
+  useEffect(() => {
+    const storedData = localStorage.getItem(`hotel_preview_${resolvedParams.id}`);
+    if (storedData) {
+      setPreviewData(JSON.parse(storedData));
+      localStorage.removeItem(`hotel_preview_${resolvedParams.id}`);
+    }
+  }, [resolvedParams.id]);
+
+  if (!previewData) {
     return <div>Loading...</div>;
   }
-
-  return <HotelDetailContainer hotel={hotel} />;
+  
+  return <HotelDetailContainer hotel={previewData} />;
 } 
