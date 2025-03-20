@@ -41,11 +41,11 @@ async function getHotels(searchParams: { [key: string]: string | string[] | unde
   }
 }
 
-export default async function SearchPage({ 
-  searchParams 
-}: { 
-  searchParams: { [key: string]: string | string[] | undefined } 
-}) {
+interface SearchPageProps {
+  searchParams: { [key: string]: string | string[] | undefined }
+}
+
+export default async function SearchPage({ searchParams }: SearchPageProps) {
   const initialData = await getHotels(searchParams);
 
   return (
