@@ -1,14 +1,6 @@
 import { Icon } from "@iconify/react";
 import { useState, useRef, useEffect } from "react";
-
-interface InputDateProps {
-  dateRange: {
-    from: string;
-    to: string;
-  };
-  errors: { date: boolean };
-  handleDateChange: (e: React.ChangeEvent<HTMLInputElement>) => void;
-}
+import { InputDateProps } from "./types";
 
 export function InputDate({
   dateRange,

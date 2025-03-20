@@ -1,19 +1,5 @@
 import { Icon } from "@iconify/react";
-import { RefObject } from "react";
-
-interface GuestsAndRooms {
-  guests: number;
-  rooms: number;
-}
-
-interface InputGuestsProps {
-  guestsDropdownRef: RefObject<HTMLDivElement | null>;
-  guestsAndRooms: GuestsAndRooms;
-  isGuestsOpen: boolean;
-  errors: { guests: boolean };
-  setIsGuestsOpen: (value: boolean) => void;
-  handleGuestsChange: (type: 'guests' | 'rooms', operation: 'increment' | 'decrement') => void;
-}
+import { InputGuestsProps } from "./types";
 
 export function InputGuests({
   guestsDropdownRef,

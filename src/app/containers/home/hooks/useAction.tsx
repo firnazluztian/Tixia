@@ -1,19 +1,8 @@
-'use client';
-
+"use client";
 import { useState, useRef, useEffect } from "react";
 import { useRouter } from "next/navigation";
-import { useSearchHistory } from '@/app/hooks/useSearchHistory';
-
-interface City {
-  id: number;
-  name: string;
-  country: string;
-}
-
-interface GuestsAndRooms {
-  guests: number;
-  rooms: number;
-}
+import { useSearchHistory } from "@/app/hooks/useSearchHistory";
+import { City, GuestsAndRooms } from "../types";
 
 export const useAction = (cities: City[]) => {
   const [isSearchOpen, setIsSearchOpen] = useState(false);
@@ -21,17 +10,17 @@ export const useAction = (cities: City[]) => {
   const [selectedCity, setSelectedCity] = useState<City | null>(null);
   const [dateRange, setDateRange] = useState({
     from: "",
-    to: ""
+    to: "",
   });
   const [guestsAndRooms, setGuestsAndRooms] = useState<GuestsAndRooms>({
     guests: 0,
-    rooms: 0
+    rooms: 0,
   });
   const [isGuestsOpen, setIsGuestsOpen] = useState(false);
   const [errors, setErrors] = useState({
     city: false,
     date: false,
-    guests: false
+    guests: false,
   });
 
   const router = useRouter();
@@ -65,19 +54,23 @@ export const useAction = (cities: City[]) => {
     return () => document.removeEventListener("mousedown", handleClickOutside);
   }, []);
 
-  const handleGuestsChange = (type: 'guests' | 'rooms', operation: 'increment' | 'decrement') => {
-    setGuestsAndRooms(prev => {
-      const newValue = operation === 'increment' ? prev[type] + 1 : prev[type] - 1;
-      
-      if (type === 'rooms') {
+  const handleGuestsChange = (
+    type: "guests" | "rooms",
+    operation: "increment" | "decrement"
+  ) => {
+    setGuestsAndRooms((prev) => {
+      const newValue =
+        operation === "increment" ? prev[type] + 1 : prev[type] - 1;
+
+      if (type === "rooms") {
         if (newValue < 1 || newValue > prev.guests) return prev;
       } else {
         if (newValue < prev.rooms || newValue > 20) return prev;
       }
-      
+
       return {
         ...prev,
-        [type]: newValue
+        [type]: newValue,
       };
     });
   };
@@ -86,25 +79,25 @@ export const useAction = (cities: City[]) => {
     const newErrors = {
       city: !selectedCity,
       date: !dateRange.from || !dateRange.to,
-      guests: guestsAndRooms.guests < 1 || guestsAndRooms.rooms < 1
+      guests: guestsAndRooms.guests < 1 || guestsAndRooms.rooms < 1,
     };
-    
+
     setErrors(newErrors);
 
     if (!newErrors.city && !newErrors.date && !newErrors.guests) {
       const searchParams = new URLSearchParams({
-        city: selectedCity?.name || '',
-        country: selectedCity?.country || '',
+        city: selectedCity?.name || "",
+        country: selectedCity?.country || "",
         dateFrom: dateRange.from,
         dateTo: dateRange.to,
         guests: guestsAndRooms.guests.toString(),
-        rooms: guestsAndRooms.rooms.toString()
+        rooms: guestsAndRooms.rooms.toString(),
       });
 
       // Save search history
       saveSearchHistory({
-        city: selectedCity?.name || '',
-        country: selectedCity?.country || '',
+        city: selectedCity?.name || "",
+        country: selectedCity?.country || "",
         dateFrom: dateRange.from,
         dateTo: dateRange.to,
         guests: guestsAndRooms.guests.toString(),
@@ -129,9 +122,9 @@ export const useAction = (cities: City[]) => {
 
   const handleDateChange = (e: React.ChangeEvent<HTMLInputElement>) => {
     const { name, value } = e.target;
-    setDateRange(prev => ({
+    setDateRange((prev) => ({
       ...prev,
-      [name]: value
+      [name]: value,
     }));
   };
 
@@ -155,6 +148,6 @@ export const useAction = (cities: City[]) => {
     handleCitySelect,
     handleDateChange,
     setIsGuestsOpen,
-    handleGuestsChange
+    handleGuestsChange,
   };
 };

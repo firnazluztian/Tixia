@@ -1,23 +1,7 @@
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-
-interface Room {
-  id: number;
-  name: string;
-  price: number;
-  bed_type: string;
-  size: number;
-  guest_capacity: number;
-  facilities: string[];
-  is_breakfast_included: boolean;
-  available_rooms: number;
-  total_rooms: number;
-  images?: string[];
-}
-
-interface RoomTypesProps {
-  data: Room[];
-}
+import { RoomTypesProps } from "./types";
+import type { Room } from "./types";
 
 export const RoomTypes = ({ data }: RoomTypesProps) => {
   return (

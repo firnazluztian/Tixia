@@ -1,10 +1,9 @@
 "use client";
-
 import { useEffect, useState } from "react";
 import { HotelCard } from "./hotel-card";
 import { Pagination } from "./pagination";
 import { useAction } from "./hooks/useAction";
-import { HotelSearchResponse } from "./hooks/useAction";
+import { HotelSearchResponse } from "./types";
 import { Filter } from "./filter";
 
 export const HotelList = () => {

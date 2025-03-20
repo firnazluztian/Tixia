@@ -7,16 +7,7 @@ import { InputCity } from "./input-city";
 import { InputDate } from "./input-date";
 import { InputGuests } from "./input-guests";
 import { useSearchHistory } from "@/app/hooks/useSearchHistory";
-
-interface City {
-  id: number;
-  name: string;
-  country: string;
-}
-
-interface HomeContainerProps {
-  cities: City[];
-}
+import { HomeContainerProps } from "./types";
 
 export function HomeContainer({ cities }: HomeContainerProps) {
   const {

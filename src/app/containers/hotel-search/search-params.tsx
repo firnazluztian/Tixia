@@ -13,12 +13,12 @@ export const SearchParams = () => {
   const rooms = searchParams.get("rooms");
 
   const formatDate = (dateString: string | null) => {
-    if (!dateString) return '';
+    if (!dateString) return "";
     const date = new Date(dateString);
-    return date.toLocaleDateString('en-GB', {
-      day: 'numeric',
-      month: 'short',
-      year: 'numeric'
+    return date.toLocaleDateString("en-GB", {
+      day: "numeric",
+      month: "short",
+      year: "numeric",
     });
   };
 
@@ -28,9 +28,7 @@ export const SearchParams = () => {
         <span className="text-sm text-gray-600">
           Kota/Nama Hotel/ Destinasi
         </span>
-        <p className="font-medium">
-          {city}
-        </p>
+        <p className="font-medium">{city}</p>
       </div>
 
       <div className="hidden md:block h-12 w-[1px] bg-gray-200" />
@@ -48,7 +46,9 @@ export const SearchParams = () => {
 
       <div className="flex flex-col w-full md:w-auto">
         <span className="text-sm text-gray-600">Jumlah Tamu dan Kamar</span>
-        <p className="font-medium">{guests} Tamu {rooms} Kamar</p>
+        <p className="font-medium">
+          {guests} Tamu {rooms} Kamar
+        </p>
       </div>
 
       <div className="hidden md:block h-12 w-[1px] bg-gray-200" />

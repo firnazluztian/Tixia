@@ -1,14 +1,6 @@
 import Image from "next/image";
 import { Icon } from "@iconify/react";
-
-interface HeaderProps {
-  hotel: {
-    name: string;
-    star: number;
-    address: string;
-    images: string[];
-  };
-}
+import { HeaderProps } from "./types";
 
 export const Header = ({ hotel }: HeaderProps) => {
   return (

@@ -1,48 +1,6 @@
 import { useSearchParams } from "next/navigation";
 import { useCallback, useState } from "react";
-
-export interface HotelSearchResponse {
-  data: {
-    data: Hotel[];
-    page: number;
-    page_size: number;
-    total: number;
-    total_pages: number;
-  };
-  statusCode: number;
-  success: boolean;
-}
-
-interface Hotel {
-  id: number;
-  name: string;
-  star: number;
-  address: string;
-  images: string[];
-  facilities: string[];
-  rooms: {
-    price: number;
-    id: number;
-    name: string;
-    bed_type: string;
-    size: number;
-    guest_capacity: number;
-    facilities: string[];
-    is_breakfast_included: boolean;
-  }[];
-  city: {
-    id: number;
-    name: string;
-    country: string;
-  };
-}
-
-export interface FilterState {
-  stars: number[];
-  facilities: string[];
-  minPrice: number;
-  maxPrice: number;
-}
+import { FilterState, HotelSearchResponse } from "../types";
 
 export const useAction = () => {
   const searchParams = useSearchParams();

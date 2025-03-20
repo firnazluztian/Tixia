@@ -9,37 +9,7 @@ import { Review } from "./review";
 import { RoomTypes } from "./room-types";
 import { Tabs } from "./tabs";
 import { Header } from "./header";
-interface HotelDetailProps {
-  hotel: {
-    id: number;
-    name: string;
-    star: number;
-    address: string;
-    description: string;
-    policy: string;
-    images: string[];
-    facilities: string[];
-    latitude: number;
-    longitude: number;
-    rooms: {
-      id: number;
-      name: string;
-      price: number;
-      bed_type: string;
-      size: number;
-      guest_capacity: number;
-      facilities: string[];
-      is_breakfast_included: boolean;
-      available_rooms: number;
-      total_rooms: number;
-    }[];
-    city: {
-      id: number;
-      name: string;
-      country: string;
-    };
-  };
-}
+import { HotelDetailProps } from "./types";
 
 export const HotelDetailContainer = ({ hotel }: HotelDetailProps) => {
   return (

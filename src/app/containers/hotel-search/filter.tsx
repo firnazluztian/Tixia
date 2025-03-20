@@ -1,11 +1,6 @@
 import { Accordion } from "@/app/components/Accordion";
-import { FilterState } from "./hooks/useAction";
 import { useState, useEffect } from 'react';
-
-interface FilterProps {
-  filters: FilterState;
-  onFilterChange: (filters: Partial<FilterState>) => void;
-}
+import { FilterProps } from "./types";
 
 export const Filter = ({ filters, onFilterChange }: FilterProps) => {
   const [localPrice, setLocalPrice] = useState(filters?.maxPrice);

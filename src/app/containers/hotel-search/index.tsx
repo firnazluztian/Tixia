@@ -1,5 +1,4 @@
 "use client";
-
 import { Navigation } from "@/app/components/Navigation";
 import dynamic from "next/dynamic";
 import { HotelList } from "./hotel-list";

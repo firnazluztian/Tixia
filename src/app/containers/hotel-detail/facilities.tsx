@@ -1,8 +1,6 @@
 import { Icon } from "@iconify/react";
+import { FacilitiesProps } from "./types";
 
-interface FacilitiesProps {
-  data: string[];
-}
 
 export const Facilities = ({ data }: FacilitiesProps) => {
   return (

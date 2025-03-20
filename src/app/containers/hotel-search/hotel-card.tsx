@@ -1,18 +1,7 @@
 import Image from "next/image";
 import { useRouter, useSearchParams } from "next/navigation";
 import { Icon } from "@iconify/react";
-
-interface Hotel {
-  id: number;
-  name: string;
-  star: number;
-  address: string;
-  images: string[];
-  facilities: string[];
-  rooms: {
-    price: number;
-  }[];
-}
+import { Hotel } from "./types";
 
 const facilityIcons: Record<string, string> = {
   "Swimming Pool": "/icon/pool.png",
@@ -40,7 +29,7 @@ export const HotelCard = ({ hotel }: { hotel: Hotel }) => {
     dateTo: searchParams.get("dateTo") || "",
     guests: searchParams.get("guests") || "",
     rooms: searchParams.get("rooms") || "",
-    hotelData: encodeURIComponent(JSON.stringify(hotel))
+    hotelData: encodeURIComponent(JSON.stringify(hotel)),
   });
 
   const getFacilityIcon = (facility: string) => {

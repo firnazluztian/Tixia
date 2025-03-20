@@ -1,23 +1,5 @@
 import { Icon } from "@iconify/react";
-import { RefObject } from "react";
-
-interface City {
-  id: number;
-  name: string;
-  country: string;
-}
-
-interface InputCityProps {
-  dropdownRef: RefObject<HTMLDivElement | null>;
-  selectedCity: City | null;
-  searchTerm: string;
-  isSearchOpen: boolean;
-  errors: { city: boolean };
-  filteredCities: City[];
-  setIsSearchOpen: (value: boolean) => void;
-  handleCitySearch: (e: React.ChangeEvent<HTMLInputElement>) => void;
-  handleCitySelect: (city: City) => void;
-}
+import { InputCityProps } from "./types";
 
 export function InputCity({
   dropdownRef,

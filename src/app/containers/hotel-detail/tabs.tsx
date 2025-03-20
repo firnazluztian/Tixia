@@ -1,9 +1,5 @@
 "use client";
-
-interface Tab {
-  name: string;
-  id: string;
-}
+import { Tab } from "./types";
 
 const schemaTabs: Tab[] = [
   { name: "Tentang Hotel", id: "description" },
@@ -19,8 +15,9 @@ export const Tabs = () => {
     const element = document.getElementById(id);
     if (element) {
       const yOffset = -100; // Offset for fixed header
-      const y = element.getBoundingClientRect().top + window.pageYOffset + yOffset;
-      window.scrollTo({ top: y, behavior: 'smooth' });
+      const y =
+        element.getBoundingClientRect().top + window.pageYOffset + yOffset;
+      window.scrollTo({ top: y, behavior: "smooth" });
     }
   };
 
@@ -39,4 +36,4 @@ export const Tabs = () => {
       </div>
     </div>
   );
-}; 
+};

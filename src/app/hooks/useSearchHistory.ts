@@ -1,7 +1,6 @@
 "use client";
-
-import { useCallback } from 'react';
-import { useRouter } from 'next/navigation';
+import { useCallback } from "react";
+import { useRouter } from "next/navigation";
 
 interface SearchParams {
   city: string;
@@ -16,14 +15,14 @@ export const useSearchHistory = () => {
   const router = useRouter();
 
   const saveSearchHistory = useCallback((params: SearchParams) => {
-    if (typeof window !== 'undefined') {
-      localStorage.setItem('lastSearch', JSON.stringify(params));
+    if (typeof window !== "undefined") {
+      localStorage.setItem("lastSearch", JSON.stringify(params));
     }
   }, []);
 
   const getLastSearch = useCallback(() => {
-    if (typeof window !== 'undefined') {
-      const lastSearch = localStorage.getItem('lastSearch');
+    if (typeof window !== "undefined") {
+      const lastSearch = localStorage.getItem("lastSearch");
       return lastSearch ? JSON.parse(lastSearch) : null;
     }
     return null;
@@ -40,6 +39,6 @@ export const useSearchHistory = () => {
   return {
     saveSearchHistory,
     getLastSearch,
-    goToLastSearch
+    goToLastSearch,
   };
-}; 
+};

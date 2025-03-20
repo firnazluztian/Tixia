@@ -1,13 +1,6 @@
 "use client";
-
 import { GoogleMap, Marker, LoadScript } from '@react-google-maps/api';
-
-interface LocationProps {
-  data: {
-    latitude: number;
-    longitude: number;
-  };
-}
+import { LocationProps } from "./types";
 
 const containerStyle = {
   width: '100%',

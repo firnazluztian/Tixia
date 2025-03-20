@@ -1,6 +1,4 @@
-interface PolicyProps {
-  data: string;
-}
+import { PolicyProps } from "./types";
 
 export const Policy = ({ data }: PolicyProps) => {
   return (
